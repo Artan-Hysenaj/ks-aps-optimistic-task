@@ -8,7 +8,7 @@
 	"trailingComma": "es5",
 	"printWidth": 120,
 	"importOrder": [
-		"^(react|clsx|dayjs|react-router-dom|i18next|date-fns/locale|i18n|react-datepicker|react-error-boundary)$",
+		"^(react|clsx|dayjs|react-router-dom)$",
 		"antd",
 		"api",
 		"store",
@@ -16,10 +16,10 @@
 		"components",
 		"hooks",
 		"helpers",
+		"lib",
 		"^[./]",
 		"constants",
 		"types|schemas|yup/lib/schema",
-		"@heroicons",
 		".css$|.json$|.png$|.jpg$"
 	],
 	"importOrderSeparation": true,
