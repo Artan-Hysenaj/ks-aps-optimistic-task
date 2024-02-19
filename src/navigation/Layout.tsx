@@ -21,7 +21,7 @@ export function MainLayout(): JSX.Element {
 					<Outlet />
 				</Suspense>
 			</Layout.Content>
-			<Layout.Footer>Ant Design ©{new Date().getFullYear()} Created by Artan Hysenaj</Layout.Footer>
+			<Layout.Footer>Dummy Users ©{new Date().getFullYear()} Created by Artan Hysenaj</Layout.Footer>
 		</Layout>
 	);
 }

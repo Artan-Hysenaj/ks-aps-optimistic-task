@@ -1,13 +1,14 @@
-import { ArrowLeftOutlined, HeartOutlined, ReadOutlined } from '@ant-design/icons';
+import { HeartOutlined, ReadOutlined } from '@ant-design/icons';
 import { useQuery } from '@tanstack/react-query';
 
 import { Fragment } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { Avatar, Card, Skeleton, Spin, Tag, Typography } from 'antd';
 
 import { getUserById, getUserPosts } from '@/api/dummyApi';
 
+import BackButton from '@/components/BackButton';
 import ErrorBoundary from '@/components/ErrorBoundary';
 
 import { Pagination } from '@/types/Pagination';
@@ -16,7 +17,6 @@ import { User } from '@/types/User';
 
 export const Component = function UserDetails(): JSX.Element {
 	const { id: userId } = useParams();
-	const navigate = useNavigate();
 
 	const {
 		data: userData,
@@ -41,33 +41,26 @@ export const Component = function UserDetails(): JSX.Element {
 	return (
 		<Fragment>
 			<div className="px-4 py-6 max-w-6xl mx-auto space-y-6">
-				<ArrowLeftOutlined
-					// size={{ xs: 24, sm: 32, md: 40, lg: 48, xl: 56, xxl: 64 }}
-					title="Go back"
-					className="hover:cursor-pointer"
-					onClick={() => navigate(-1)}
-				/>
-				<div className="flex items-center space-x-4">
-					{userLoading ? (
+				<BackButton />
+				<div className="flex flex-col md:flex-row items-center justify-center md:justify-start space-x-4">
+					<ErrorBoundary isError={userHasError} error={userError}>
 						<Skeleton
 							active
+							loading={userLoading}
 							className="max-w-md"
 							avatar={{ className: 'w-20 h-20' }}
-							paragraph={{ rows: 1 }}
-						/>
-					) : (
-						<ErrorBoundary isError={userHasError} error={userError}>
-							<Avatar className="w-20 h-20" src={userData?.image} />
+							paragraph={{ rows: 1 }}>
+							<Avatar className="w-20 h-20" src={userData?.image} alt="User avatar image!" />
 							<div className="space-y-1">
-								<h1 className="text-2xl font-bold">
+								<h3 className="text-center md:text-left text-2xl font-bold">
 									{userData?.firstName} {userData?.lastName}
-								</h1>
+								</h3>
 								<p className="text-sm text-gray-500">
 									{userData?.age} years old, {userData?.email}, {userData?.phone}
 								</p>
 							</div>
-						</ErrorBoundary>
-					)}
+						</Skeleton>
+					</ErrorBoundary>
 				</div>
 				{postsLoading ? (
 					<div className="min-h-40 md:min-h-80 flex justify-center items-center">
