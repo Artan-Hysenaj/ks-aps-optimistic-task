@@ -176,7 +176,7 @@ export function Users(): JSX.Element {
 				className="max-w-md mb-2"
 				size="large"
 				onSearch={(value) => setSearchValue(value)}
-				loading={(searchValue !== '' && isLoading) || isPlaceholderData}
+				loading={searchValue !== '' && (isLoading || isPlaceholderData)}
 			/>
 			<Table
 				className="overflow-x-auto"
