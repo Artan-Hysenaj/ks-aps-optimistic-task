@@ -57,7 +57,7 @@ export function Users(): JSX.Element {
 	);
 
 	const { data, isLoading, isPlaceholderData, isError, error } = useQuery<Pagination<User[]>>({
-		queryKey: ['users', params.toString(), searchValue],
+		queryKey: ['users', searchValue, params, hasFilters, hasSearch],
 		queryFn: () => getUsers(params, { filtering: !!hasFilters, searching: hasSearch }),
 		placeholderData: keepPreviousData,
 	});
