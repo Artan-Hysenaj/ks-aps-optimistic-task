@@ -64,7 +64,7 @@ export const Component = function UserDetails(): JSX.Element {
 				</div>
 				{postsLoading ? (
 					<div className="min-h-40 md:min-h-80 flex justify-center items-center">
-						<Spin tip="Loading" size="large" />
+						<Spin size="large" />
 					</div>
 				) : (
 					<ErrorBoundary isError={postsHasError} error={postsError}>
