@@ -6,6 +6,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { Avatar, Card, Tag, Typography } from 'antd';
 
+import { getUserById, getUserPosts } from '@/api/dummyApi';
+
 import { Pagination } from '@/types/Pagination';
 import { Post } from '@/types/Post';
 import { User } from '@/types/User';
@@ -16,12 +18,12 @@ export const Component = function UserDetails(): JSX.Element {
 
 	const { data: userData } = useQuery<User>({
 		queryKey: ['user', userId],
-		queryFn: () => fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/`).then((res) => res.json()),
+		queryFn: () => getUserById(String(userId)),
 	});
 
 	const { data: postsData } = useQuery<Pagination<Post[]>>({
 		queryKey: ['posts', userId],
-		queryFn: () => fetch(`${import.meta.env.VITE_API_URL}/users/${userId}/posts`).then((res) => res.json()),
+		queryFn: () => getUserPosts(String(userId)),
 	});
 
 	return (

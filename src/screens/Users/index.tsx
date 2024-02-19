@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import { Button, Input, Space, Table } from 'antd';
 import type { GetProp, TableProps } from 'antd';
 
+import { getUsers } from '@/api/dummyApi';
+
 import { PAGE_SIZE, SELECTED_USER_KEYS } from '@/lib/constants';
 
 import { Pagination } from '@/types/Pagination';
@@ -66,10 +68,7 @@ export function Users(): JSX.Element {
 
 	const { data, isLoading, isPlaceholderData } = useQuery<Pagination<User[]>>({
 		queryKey: ['users', params.toString(), searchValue],
-		queryFn: () =>
-			fetch(
-				`${import.meta.env.VITE_API_URL}/users${hasFilters && !hasSearch ? '/filter' : ''}${hasSearch && !hasFilters ? '/search' : ''}?${params.toString()}`
-			).then((res) => res.json()),
+		queryFn: () => getUsers(params, { filtering: !!hasFilters, searching: hasSearch }),
 		placeholderData: keepPreviousData,
 	});
 
