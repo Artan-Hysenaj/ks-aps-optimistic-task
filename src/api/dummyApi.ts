@@ -1,5 +1,4 @@
 export const getUsers = async (
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	params: URLSearchParams,
 	options: {
 		filtering: boolean;

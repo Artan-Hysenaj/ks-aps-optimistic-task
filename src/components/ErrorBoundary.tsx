@@ -7,6 +7,22 @@ interface ErrorBoundaryProps {
 	error: Error | null;
 }
 
+/**
+ * ErrorBoundary component that wraps around other components to catch and display errors.
+ *
+ * @component
+ * @example
+ * ```tsx
+ * <ErrorBoundary isError={true} error={new Error('Something went wrong.')}>
+ *   <MyComponent />
+ * </ErrorBoundary>
+ * ```
+ *
+ * @param {object} props - The component props.
+ * @param {boolean} props.isError - Indicates whether an error has occurred.
+ * @param {Error | null} props.error - The error object.
+ * @returns {JSX.Element} The rendered ErrorBoundary component.
+ */
 function ErrorBoundary({ isError, error, children }: PropsWithChildren<ErrorBoundaryProps>): JSX.Element {
 	return (
 		<Fragment>
