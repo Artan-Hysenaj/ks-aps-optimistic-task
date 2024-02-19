@@ -10,7 +10,7 @@ export function MainLayout(): JSX.Element {
 	return (
 		<Layout>
 			<Layout.Header className="text-white">Header</Layout.Header>
-			<Layout.Content className="container border min-h-[calc(100vh-133px)]">
+			<Layout.Content className="container min-h-[calc(100vh-133px)]">
 				<Suspense>
 					<Outlet />
 				</Suspense>

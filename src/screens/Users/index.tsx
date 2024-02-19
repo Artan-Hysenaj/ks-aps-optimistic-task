@@ -5,7 +5,7 @@ import Highlighter from 'react-highlight-words';
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Button, Flex, Input, Space, Table } from 'antd';
+import { Button, Input, Space, Table } from 'antd';
 import type { GetProp, TableProps } from 'antd';
 
 import { PAGE_SIZE, SELECTED_USER_KEYS } from '@/lib/constants';
@@ -171,15 +171,13 @@ export const Component = function Users(): JSX.Element {
 
 	return (
 		<div className="my-8">
-			<Flex justify="space-between" gap="1rem">
-				<Input.Search
-					placeholder="Search for users"
-					className="max-w-md mb-2"
-					size="large"
-					onSearch={(value) => setSearchValue(value)}
-					loading={(searchValue !== '' && isLoading) || isPlaceholderData}
-				/>
-			</Flex>
+			<Input.Search
+				placeholder="Search for users"
+				className="max-w-md mb-2"
+				size="large"
+				onSearch={(value) => setSearchValue(value)}
+				loading={(searchValue !== '' && isLoading) || isPlaceholderData}
+			/>
 			<Table
 				className="overflow-x-auto"
 				loading={isLoading || isPlaceholderData}
