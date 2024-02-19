@@ -1,19 +1,25 @@
-/* SPDX-FileCopyrightText: 2014-present Kriasoft */
-/* SPDX-License-Identifier: MIT */
+import { useNavigate, useRouteError } from 'react-router-dom';
 
-import { useRouteError } from "react-router-dom";
+import { Button, Result } from 'antd';
+import { ResultStatusType } from 'antd/es/result';
 
+/**
+ * Renders the root error component.
+ *
+ * @returns The JSX element representing the root error component.
+ */
 export function RootError(): JSX.Element {
-  const err = useRouteError() as RouteError;
+	const err = useRouteError() as RouteError;
+	const navigate = useNavigate();
 
-  return (
-    <div>
-      <h1>
-        <strong>Error {err.status || 500}</strong>:{" "}
-        {err.statusText ?? err.message}
-      </h1>
-    </div>
-  );
+	return (
+		<Result
+			status={(err.status ?? 500) as ResultStatusType}
+			title={err.status ?? 500}
+			subTitle={err.statusText ?? err.message ?? 'Sorry, something went wrong.'}
+			extra={<Button onClick={() => navigate('/')}>Back Home</Button>}
+		/>
+	);
 }
 
 type RouteError = Error & { status?: number; statusText?: string };

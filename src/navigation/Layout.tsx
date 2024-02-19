@@ -5,7 +5,7 @@ import { Layout } from 'antd';
 
 /**
  * The main application layout.
- */
+ */ 
 export function MainLayout(): JSX.Element {
 	return (
 		<Layout>

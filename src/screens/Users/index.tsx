@@ -23,7 +23,7 @@ interface TableParams {
 	filters?: Parameters<GetProp<TableProps, 'onChange'>>[1];
 }
 
-export const Component = function Users(): JSX.Element {
+export function Users(): JSX.Element {
 	const [searchValue, setSearchValue] = useState('');
 	const [tableParams, setTableParams] = useState<TableParams>({
 		pagination: {
@@ -189,4 +189,4 @@ export const Component = function Users(): JSX.Element {
 			/>
 		</div>
 	);
-};
+}
