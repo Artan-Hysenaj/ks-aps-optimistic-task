@@ -1,0 +1,28 @@
+{
+	"tabWidth": 4,
+	"singleQuote": true,
+	"plugins": ["@trivago/prettier-plugin-sort-imports"],
+	"bracketSameLine": true,
+	"bracketSpacing": true,
+	"useTabs": true,
+	"trailingComma": "es5",
+	"printWidth": 120,
+	"importOrder": [
+		"^(react|clsx|dayjs|react-router-dom|i18next|date-fns/locale|i18n|react-datepicker|react-error-boundary)$",
+		"antd",
+		"api",
+		"store",
+		"screens",
+		"components",
+		"hooks",
+		"helpers",
+		"^[./]",
+		"constants",
+		"types|schemas|yup/lib/schema",
+		"@heroicons",
+		".css$|.json$|.png$|.jpg$"
+	],
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true,
+	"importOrderCaseInsensitive": true
+}
