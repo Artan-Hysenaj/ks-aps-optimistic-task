@@ -1,12 +1,12 @@
 export const getUsers = async (
-	params: URLSearchParams,
+	params: string,
 	options: {
 		filtering: boolean;
 		searching: boolean;
 	}
 ) => {
 	const response = await fetch(
-		`${import.meta.env.VITE_API_URL}/users${options.filtering && !options.searching ? '/filter' : ''}${options.searching && !options.filtering ? '/search' : ''}?${params.toString()}`
+		`${import.meta.env.VITE_API_URL}/users${options.filtering && !options.searching ? '/filter' : ''}${options.searching && !options.filtering ? '/search' : ''}?${params}`
 	);
 	return response.json();
 };
