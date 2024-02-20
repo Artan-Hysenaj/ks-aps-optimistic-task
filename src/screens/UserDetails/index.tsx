@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { Avatar, Card, Skeleton, Spin, Tag, Typography } from 'antd';
+import { Avatar, Card, Empty, Skeleton, Spin, Tag, Typography } from 'antd';
 
 import { getUserById, getUserPosts } from '@/api/dummyApi';
 
@@ -68,33 +68,37 @@ export const Component = function UserDetails(): JSX.Element {
 					</div>
 				) : (
 					<ErrorBoundary isError={postsHasError} error={postsError}>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-							{postsData?.posts.map((post) => (
-								<div key={post.id} className="grid gap-2 md:gap-4">
-									<Card
-										className="border border-gray-200 dark:border-gray-800 rounded-lg"
-										styles={{ body: { padding: '24px' } }}>
-										<Typography.Title level={4}>{post.title}</Typography.Title>
-										<Typography.Paragraph>{post.body}</Typography.Paragraph>
-										<div className="flex items-center justify-between mt-4">
-											<div className="flex items-center space-x-2">
-												<HeartOutlined style={{ fontSize: '16px', color: '#1890ff' }} />
-												<span>{post.reactions}</span>
-												<ReadOutlined style={{ fontSize: '16px', color: '#1890ff' }} />
-												<span>{post.tags.length}</span>
+						{!postsData?.posts?.length ? (
+							<Empty />
+						) : (
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+								{postsData?.posts.map((post) => (
+									<div key={post.id} className="grid gap-2 md:gap-4">
+										<Card
+											className="border border-gray-200 dark:border-gray-800 rounded-lg"
+											styles={{ body: { padding: '24px' } }}>
+											<Typography.Title level={4}>{post.title}</Typography.Title>
+											<Typography.Paragraph>{post.body}</Typography.Paragraph>
+											<div className="flex items-center justify-between mt-4">
+												<div className="flex items-center space-x-2">
+													<HeartOutlined style={{ fontSize: '16px', color: '#1890ff' }} />
+													<span>{post.reactions}</span>
+													<ReadOutlined style={{ fontSize: '16px', color: '#1890ff' }} />
+													<span>{post.tags.length}</span>
+												</div>
+												<div>
+													{post.tags.map((tag) => (
+														<Tag key={tag} color="blue">
+															#{tag}
+														</Tag>
+													))}
+												</div>
 											</div>
-											<div>
-												{post.tags.map((tag) => (
-													<Tag key={tag} color="blue">
-														#{tag}
-													</Tag>
-												))}
-											</div>
-										</div>
-									</Card>
-								</div>
-							))}
-						</div>
+										</Card>
+									</div>
+								))}
+							</div>
+						)}
 					</ErrorBoundary>
 				)}
 			</div>
