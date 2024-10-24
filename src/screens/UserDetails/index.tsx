@@ -69,7 +69,7 @@ export const Component = function UserDetails(): JSX.Element {
 				) : (
 					<ErrorBoundary isError={postsHasError} error={postsError}>
 						{!postsData?.posts?.length ? (
-							<Empty />
+							<Empty description={`${userData?.firstName} hasn't posted anything yet.`} />
 						) : (
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 								{postsData?.posts.map((post) => (
@@ -82,7 +82,7 @@ export const Component = function UserDetails(): JSX.Element {
 											<div className="flex items-center justify-between mt-4">
 												<div className="flex items-center space-x-2">
 													<HeartOutlined style={{ fontSize: '16px', color: '#1890ff' }} />
-													<span>{post.reactions}</span>
+													<span>{post.reactions.likes}</span>
 													<ReadOutlined style={{ fontSize: '16px', color: '#1890ff' }} />
 													<span>{post.tags.length}</span>
 												</div>
